@@ -1,0 +1,26 @@
+version: '3'
+services: 
+  web:
+    # The dockerfile is inside of the same directory
+    build:
+      # The directory of files and folders where this image to be pulled
+      context: .
+      # Location of the dockerfile
+      dockerfile: Dockerfile.dev
+    ports: 
+      # port outside the container : inside the container
+      - "3000:3000"
+    volumes: 
+      - /app/node_modules
+      - .:/app
+      # To avoid react exited with code 0
+    stdin_open: true
+  tests:
+    build: 
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes: 
+      - /app/node_modules
+      - .:/app
+    stdin_open: true
+    command: ["npm", "run", "test"]
