@@ -1,0 +1,16 @@
+language: generic
+# travis need super user level permissions
+sudo: required
+# travis CI is going to automatically
+# install a copy of docker into our
+# little running container
+services:
+  - docker
+# command executes before test run
+before_install:
+  - docker build -t abdulgaffersiam/docker-react -f Dockerfile.dev . 
+# script section is supposed to contain all the 
+# different commands that need to be executed to actually run our test suit
+script:
+  # - docker run abdulgaffersiam/docker-react npm run test -- --coverage
+  - docker run -e CI=true abdulgaffersiam/docker-react npm run test
