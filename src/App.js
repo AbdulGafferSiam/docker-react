@@ -3,7 +3,7 @@ import './App.css';
 const App = () => {
   return (
     <div className="App">
-      <p>Hello prithibi!</p>
+      <p>Hello prithibi!, I have created a new branch.</p>
     </div>
   );
 }
